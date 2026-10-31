@@ -8,7 +8,7 @@ The Java execution engine generates real HTTP traffic. Angular provides the edit
 
 ## Architecture
 
-![System architecture](docs/images/system-architecture.svg)
+![System architecture](docs/images/system-architecture.svg?v=2)
 
 Spring Boot owns validation, admission, execution and persistence. Each run uses a fixed number of workers; each worker sends one request at a time and executes scenario steps in order. The frontend polls live results every 0.8 seconds. H2 provides file-backed local storage by default; the same JDBC repository supports PostgreSQL.
 
