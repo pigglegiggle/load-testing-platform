@@ -45,7 +45,7 @@ Request starts with the demo health URL. Send it to inspect status, headers and 
 
 Two workers × four iterations × three passing steps produce 24 passed requests and eight successful iterations. Save the scenario, run it, then run again and select a baseline. Counts can be lower when a step fails, a run is cancelled or the safety deadline is reached. Use the recent sample table to see why.
 
-A request URL, header, body or expected value can contain `${name}`. Extraction fields map names to JSON Pointers, for example `{"token":"/token"}`. Assertions support JSON_EQUALS, BODY_CONTAINS and HEADER_EQUALS. JSON_EQUALS compares scalar text or compact serialized object/array JSON; it is not a general expression language.
+A request URL, header, body or expected value can contain `${name}`. Extraction fields map names to JSON Pointers, for example `{"token":"/token"}`. Assertions support JSON_EQUALS, BODY_CONTAINS and HEADER_EQUALS. JSON_EQUALS compares scalar text or compact serialized object/array JSON; it is not a general expression language. HEADER_EQUALS requires the named header to exist, even when the expected value is empty. Missing variables in assertion expectations are rejected before any HTTP request is sent.
 
 ## Configure target origins and ports
 

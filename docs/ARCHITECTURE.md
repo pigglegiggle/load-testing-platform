@@ -23,7 +23,7 @@ A run can be RUNNING, CANCELLING, COMPLETED, CANCELLED, FAILED or INTERRUPTED. C
 ## HTTP lifecycle
 
 1. Render and validate the target URL against the configured exact-origin allowlist.
-2. Render headers/body and enforce expanded size limits. Prepare the request without following redirects.
+2. Render headers/body and assertion expectations before sending; missing expectation variables reject the attempt without contacting the target. Enforce expanded size limits. Prepare the request without following redirects.
 3. Acquire a global request slot within the request budget. Queue timing includes preparation and slot waiting.
 4. Send asynchronously, then wait on the response future for the remaining budget. A custom body subscriber counts incoming byte buffers and rejects bodies above 1 MiB.
 5. On timeout or interruption, cancel the pending future. Release the semaphore in `finally`.

@@ -71,6 +71,11 @@ public class Requests {
                     body.isEmpty()
                             ? HttpRequest.BodyPublishers.noBody()
                             : HttpRequest.BodyPublishers.ofString(body));
+            // Resolve expectations before sending a request that could change target state.
+            List<String> expectations =
+                    step.checks().stream()
+                            .map(check -> Definitions.render(check.expected(), variables))
+                            .toList();
             var request = builder.build();
             acquired = slots.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             started = System.nanoTime();
@@ -110,16 +115,17 @@ public class Requests {
                     errors.add("Response is not valid JSON");
                 }
             }
-            for (Check check : step.checks()) {
-                String expected = Definitions.render(check.expected(), variables);
+            for (int i = 0; i < step.checks().size(); i++) {
+                Check check = step.checks().get(i);
+                String expected = expectations.get(i);
                 boolean passed =
                         switch (check.type()) {
                             case "BODY_CONTAINS" -> content.contains(expected);
                             case "HEADER_EQUALS" ->
                                     response.headers()
                                             .firstValue(check.path())
-                                            .orElse("")
-                                            .equals(expected);
+                                            .map(expected::equals)
+                                            .orElse(false);
                             case "JSON_EQUALS" ->
                                     document != null
                                             && !document.at(check.path()).isMissingNode()

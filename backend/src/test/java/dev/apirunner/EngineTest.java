@@ -393,6 +393,46 @@ class EngineTest {
     }
 
     @Test
+    void unresolvedAssertionTemplatesDoNotSendRequests() {
+        Step invalid =
+                new Step(
+                        "Missing expectation",
+                        "POST",
+                        origin + "/echo",
+                        Map.of(),
+                        "operation",
+                        1000,
+                        200,
+                        List.of(new Check("BODY_CONTAINS", "", "${missing}")),
+                        Map.of());
+        int before = calls.get();
+        Reply result = requests.send(Definitions.step(invalid), Map.of(), 1000);
+        assertEquals("INVALID_REQUEST", result.outcome());
+        assertEquals(
+                before,
+                calls.get(),
+                "An invalid assertion template must be rejected before side effects");
+    }
+
+    @Test
+    void missingHeadersCannotMatchEmptyExpectations() {
+        Step assertion =
+                new Step(
+                        "Missing header",
+                        "GET",
+                        origin + "/",
+                        Map.of(),
+                        "",
+                        1000,
+                        200,
+                        List.of(new Check("HEADER_EQUALS", "X-Absent", "")),
+                        Map.of());
+        Reply result = requests.send(Definitions.step(assertion), Map.of(), 1000);
+        assertEquals("ASSERTION_FAILED", result.outcome());
+        assertEquals(200, result.status());
+    }
+
+    @Test
     void histogramMatchesKnownSamples() {
         StartRun configuration = new StartRun(scenario(step("/")), "COUNT", 1, 1, 1);
         Statistics stats = new Statistics(configuration.scenario());
