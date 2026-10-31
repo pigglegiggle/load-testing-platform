@@ -68,7 +68,9 @@ public final class Definitions {
                 source.checks() == null ? List.of() : new java.util.ArrayList<>(source.checks());
         require(checks.size() <= 20, "At most 20 assertions per step");
         for (Check check : checks) {
-            require(check != null && CHECKS.contains(check.type()), "Unsupported assertion type");
+            require(
+                    check != null && check.type() != null && CHECKS.contains(check.type()),
+                    "Unsupported assertion type");
             require(
                     check.path() != null && check.path().length() <= 512,
                     "Assertion path is too long");
@@ -76,6 +78,10 @@ public final class Definitions {
                     check.expected() != null && check.expected().length() <= 4096,
                     "Assertion expected value is too long");
             if (check.type().equals("JSON_EQUALS")) pointer(check.path());
+            if (check.type().equals("HEADER_EQUALS"))
+                require(
+                        check.path().matches("[!#$%&'*+.^_`|~0-9A-Za-z-]+"),
+                        "Invalid assertion header name");
         }
         Map<String, String> extract = strings(source.extract(), 20, 10240, "Extractions");
         extract.forEach(

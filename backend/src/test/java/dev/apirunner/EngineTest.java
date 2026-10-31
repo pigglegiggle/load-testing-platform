@@ -351,6 +351,48 @@ class EngineTest {
     }
 
     @Test
+    void nullAssertionTypesAreRejectedAsClientErrors() {
+        Step invalid =
+                new Step(
+                        "Invalid assertion",
+                        "GET",
+                        origin + "/",
+                        Map.of(),
+                        "",
+                        1000,
+                        200,
+                        List.of(new Check(null, "/ok", "true")),
+                        Map.of());
+        var response = api.postForEntity("/api/scenarios", scenario(invalid), String.class);
+        assertEquals(400, response.getStatusCode().value());
+        assertTrue(response.getBody().contains("Unsupported assertion type"));
+    }
+
+    @Test
+    void malformedHeaderAssertionsDoNotSendRequests() {
+        int before = calls.get();
+        for (String path : List.of("", "bad header", "X-Test\r\nInjected")) {
+            Step invalid =
+                    new Step(
+                            "Invalid header assertion",
+                            "GET",
+                            origin + "/",
+                            Map.of(),
+                            "",
+                            1000,
+                            200,
+                            List.of(new Check("HEADER_EQUALS", path, "")),
+                            Map.of());
+            var response =
+                    api.postForEntity(
+                            "/api/requests/send", new SendRequest(invalid, Map.of()), String.class);
+            assertEquals(400, response.getStatusCode().value());
+            assertTrue(response.getBody().contains("Invalid assertion header name"));
+        }
+        assertEquals(before, calls.get(), "Rejected definitions must never reach the target");
+    }
+
+    @Test
     void histogramMatchesKnownSamples() {
         StartRun configuration = new StartRun(scenario(step("/")), "COUNT", 1, 1, 1);
         Statistics stats = new Statistics(configuration.scenario());
