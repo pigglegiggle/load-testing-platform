@@ -33,7 +33,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="10" value="HTTP" style="text;html=0;align=center;verticalAlign=top;fontSize=15;fontFamily=Arial;" vertex="1" parent="1">
-          <mxGeometry x="65" y="185" width="500" height="20" as="geometry" />
+          <mxGeometry x="45" y="185" width="500" height="20" as="geometry" />
         </mxCell>
         <mxCell id="11" style="edgeStyle=none;html=0;endArrow=block;endFill=1;strokeColor=#222222;startArrow=block;startFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
