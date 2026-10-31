@@ -100,7 +100,11 @@ export class App implements OnInit, OnDestroy {
     try {
       this.runs = await this.get<History[]>("/runs");
       this.connected = true;
-      if (this.run && this.active(this.run.state))
+      if (
+        this.run &&
+        this.selectedRun === this.run.id &&
+        this.active(this.run.state)
+      )
         await this.loadRun(this.run.id, false);
     } catch (error) {
       this.connected = false;
@@ -251,15 +255,25 @@ export class App implements OnInit, OnDestroy {
   }
   async loadRun(id = this.selectedRun, reportErrors = true) {
     if (!id) return;
-    const generation = ++this.runGeneration;
+    if (reportErrors) {
+      this.selectedRun = id;
+      if (this.compareId === id) {
+        this.compareId = "";
+        this.comparison = null;
+      }
+    }
+    const generation = reportErrors ? ++this.runGeneration : this.runGeneration;
     try {
       const result = await this.get<Snapshot>("/runs/" + id);
-      if (generation === this.runGeneration) {
+      if (generation === this.runGeneration && this.selectedRun === id) {
         this.run = result;
         this.selectedRun = id;
       }
     } catch (error) {
-      if (reportErrors) this.showError(error);
+      if (reportErrors && generation === this.runGeneration) {
+        this.selectedRun = this.run?.id ?? "";
+        this.showError(error);
+      }
     } finally {
       this.changes.markForCheck();
     }
@@ -273,14 +287,16 @@ export class App implements OnInit, OnDestroy {
     });
   }
   async compare() {
-    if (!this.compareId) {
-      this.comparison = null;
-      return;
-    }
+    const id = this.compareId;
+    this.comparison = null;
+    if (!id || id === this.selectedRun) return;
     try {
-      this.comparison = await this.get<Snapshot>("/runs/" + this.compareId);
+      const result = await this.get<Snapshot>("/runs/" + id);
+      if (this.compareId === id && this.selectedRun !== id)
+        this.comparison = result;
     } catch (error) {
-      this.showError(error);
+      if (this.compareId === id && this.selectedRun !== id)
+        this.showError(error);
     } finally {
       this.changes.markForCheck();
     }

@@ -6,7 +6,7 @@
 make test
 ```
 
-The Java suite uses a real isolated HTTP server and a separate H2 in-memory workspace. It verifies validation and defensive copies, literal variable substitution, JSON/body/header assertions, extraction, allowed origins and no redirect following, stalled-body timeout, oversized response cancellation, network failure, concurrent scenario token isolation, failed-step short circuit, bounded active-run admission, cancellation, duration execution, sample retention, persisted definitions, interrupted-run recovery, HTTP API validation and known histogram percentiles.
+The Java suite uses a real isolated HTTP server and a separate H2 in-memory workspace. It verifies validation and defensive copies, literal variable substitution, JSON/body/header assertions, extraction, allowed origins and no redirect following, stalled-body timeout, oversized response cancellation, network failure, concurrent scenario token isolation, failed-step short circuit, bounded active-run admission, cancellation, duration execution, sample retention, persisted definitions, interrupted-run recovery, HTTP API validation and known histogram percentiles. Assertion validation rejects null types and malformed header names as client errors. Regression checks prove unresolved expectation variables never contact the target and absent headers cannot pass an empty-value assertion.
 
 ## Browser workflows
 
@@ -27,7 +27,7 @@ PLAYWRIGHT_BROWSER=chromium npm run test:e2e
 
 Browser downloads consume additional disk. No browser download was required on this Mac because Chrome was already installed. Failure traces and screenshots are under ignored `build/browser-results/`. The successful run screenshot is saved to `docs/images/web-runs.png` for the README.
 
-Coverage includes real request/response inspection, blocked targets, scenario saving, multi-step load execution, exact successful counts, export/import, comparison, mobile-width layout, assertion failure and cancellation. Browsers were exercised headlessly on macOS Chrome; Safari, Firefox, Windows and real mobile devices were not tested.
+Coverage includes real request/response inspection, blocked targets, scenario saving, multi-step load execution, exact successful counts, export/import, comparison, mobile-width layout, assertion failure and cancellation. Controlled delayed-response tests verify that an old baseline response cannot replace a newer selection, selecting the baseline as the primary run clears self-comparison, and background polling cannot replace a pending user-selected run. Browsers were exercised headlessly on macOS Chrome; Safari, Firefox, Windows and real mobile devices were not tested.
 
 ## Packaged process and abrupt recovery
 
