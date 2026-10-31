@@ -1,0 +1,4041 @@
+{
+  "recorded_at": "2026-11-01T03:21:18.734299+07:00",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "java": "openjdk version \"24.0.2\" 2025-07-15\nOpenJDK Runtime Environment Temurin-24.0.2+12 (build 24.0.2+12)\nOpenJDK 64-Bit Server VM Temurin-24.0.2+12 (build 24.0.2+12, mixed mode, sharing)",
+  "database": "H2 file",
+  "jar_sha256": "cff936fffb950c383cc7d80e775f679338c6bc0bc16899908e7e2c03b8a07f9e",
+  "method": "Three closed-loop count runs, 20 iterations per worker, one real HTTP step with 40 ms target delay. Same-host demo target and runner share the JVM. Not isolated generator capacity or a production benchmark.",
+  "restart": "SIGKILL during active work; restart recovered INTERRUPTED and retained the saved scenario.",
+  "observations": [
+    {
+      "id": "94ce1e1a-f37d-4afd-bffc-f75c24612aa9",
+      "name": "40 ms fixture / 1 workers",
+      "state": "COMPLETED",
+      "startedAt": "2026-10-31T20:21:12.798453Z",
+      "finishedAt": "2026-10-31T20:21:14.015186Z",
+      "configuration": {
+        "scenario": {
+          "name": "40 ms fixture / 1 workers",
+          "variables": {},
+          "steps": [
+            {
+              "name": "Read items",
+              "method": "GET",
+              "url": "http://127.0.0.1:59970/items?delayMs=40",
+              "headers": {
+                "Authorization": "Bearer demo-token"
+              },
+              "body": "",
+              "timeoutMs": 3000,
+              "expectedStatus": 200,
+              "checks": [
+                {
+                  "type": "JSON_EQUALS",
+                  "path": "/items/0/name",
+                  "expected": "Notebook"
+                }
+              ],
+              "extract": {}
+            }
+          ]
+        },
+        "mode": "COUNT",
+        "concurrency": 1,
+        "iterations": 20,
+        "durationSeconds": 10
+      },
+      "attempted": 20,
+      "passed": 20,
+      "failed": 0,
+      "cancelled": 0,
+      "iterationsCompleted": 20,
+      "activeRequests": 0,
+      "elapsedSeconds": 1.216753791,
+      "requestsPerSecond": 16.437179113748904,
+      "p50Ms": 48.863,
+      "p95Ms": 95.935,
+      "p99Ms": 115.263,
+      "queueP95Ms": 0.168,
+      "responseBytes": 900,
+      "outcomes": {
+        "PASSED": 20
+      },
+      "steps": [
+        {
+          "name": "Read items",
+          "requests": 20,
+          "passed": 20,
+          "failed": 0,
+          "cancelled": 0,
+          "p95Ms": 95.935
+        }
+      ],
+      "series": [
+        {
+          "second": 0,
+          "requests": 15,
+          "failed": 0,
+          "meanMs": 63.48990560000001
+        },
+        {
+          "second": 1,
+          "requests": 5,
+          "failed": 0,
+          "meanMs": 44.8575916
+        }
+      ],
+      "samples": [
+        {
+          "sequence": 1,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 115.213792,
+          "queueMs": 2.843292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 2,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 67.534417,
+          "queueMs": 0.069125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 3,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 90.970333,
+          "queueMs": 0.0855,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 4,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 63.366541,
+          "queueMs": 0.1345,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 5,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 70.42025,
+          "queueMs": 0.072291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 6,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 49.98975,
+          "queueMs": 0.061167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 7,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.857625,
+          "queueMs": 0.109042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 8,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 52.984084,
+          "queueMs": 0.161458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 9,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 95.890584,
+          "queueMs": 0.13775,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 10,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 60.089792,
+          "queueMs": 0.073292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 11,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.697792,
+          "queueMs": 0.062916,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 12,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.58375,
+          "queueMs": 0.168375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 13,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.198625,
+          "queueMs": 0.096875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 14,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 55.046708,
+          "queueMs": 0.064292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 15,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.504541,
+          "queueMs": 0.048667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 16,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.225875,
+          "queueMs": 0.04525,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 17,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.240792,
+          "queueMs": 0.039125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 18,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.96775,
+          "queueMs": 0.039584,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 19,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.452166,
+          "queueMs": 0.052209,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 20,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.401375,
+          "queueMs": 0.045917,
+          "bytes": 45,
+          "error": ""
+        }
+      ],
+      "message": ""
+    },
+    {
+      "id": "b1037579-d56e-4319-8072-cc66f025cc61",
+      "name": "40 ms fixture / 4 workers",
+      "state": "COMPLETED",
+      "startedAt": "2026-10-31T20:21:14.034996Z",
+      "finishedAt": "2026-10-31T20:21:14.932046Z",
+      "configuration": {
+        "scenario": {
+          "name": "40 ms fixture / 4 workers",
+          "variables": {},
+          "steps": [
+            {
+              "name": "Read items",
+              "method": "GET",
+              "url": "http://127.0.0.1:59970/items?delayMs=40",
+              "headers": {
+                "Authorization": "Bearer demo-token"
+              },
+              "body": "",
+              "timeoutMs": 3000,
+              "expectedStatus": 200,
+              "checks": [
+                {
+                  "type": "JSON_EQUALS",
+                  "path": "/items/0/name",
+                  "expected": "Notebook"
+                }
+              ],
+              "extract": {}
+            }
+          ]
+        },
+        "mode": "COUNT",
+        "concurrency": 4,
+        "iterations": 20,
+        "durationSeconds": 10
+      },
+      "attempted": 80,
+      "passed": 80,
+      "failed": 0,
+      "cancelled": 0,
+      "iterationsCompleted": 80,
+      "activeRequests": 0,
+      "elapsedSeconds": 0.897059709,
+      "requestsPerSecond": 89.18023984064588,
+      "p50Ms": 45.407,
+      "p95Ms": 46.751,
+      "p99Ms": 47.231,
+      "queueP95Ms": 0.087,
+      "responseBytes": 3600,
+      "outcomes": {
+        "PASSED": 80
+      },
+      "steps": [
+        {
+          "name": "Read items",
+          "requests": 80,
+          "passed": 80,
+          "failed": 0,
+          "cancelled": 0,
+          "p95Ms": 46.751
+        }
+      ],
+      "series": [
+        {
+          "second": 0,
+          "requests": 80,
+          "failed": 0,
+          "meanMs": 44.5429463375
+        }
+      ],
+      "samples": [
+        {
+          "sequence": 1,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.15575,
+          "queueMs": 0.08175,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 2,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.970541,
+          "queueMs": 0.056292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 3,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.2265,
+          "queueMs": 0.110958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 4,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.909708,
+          "queueMs": 0.055542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 5,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.233667,
+          "queueMs": 0.071333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 6,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.443625,
+          "queueMs": 0.039292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 7,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.463084,
+          "queueMs": 0.038625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 8,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.624292,
+          "queueMs": 0.049166,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 9,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.559625,
+          "queueMs": 0.051166,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 10,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.537417,
+          "queueMs": 0.052833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 11,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.537709,
+          "queueMs": 0.086791,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 12,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.740334,
+          "queueMs": 0.062041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 13,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.6765,
+          "queueMs": 0.065416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 14,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.626291,
+          "queueMs": 0.061,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 15,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.257125,
+          "queueMs": 0.068625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 16,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.132625,
+          "queueMs": 0.067333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 17,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.21575,
+          "queueMs": 0.071875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 18,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.704166,
+          "queueMs": 0.06125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 19,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.02875,
+          "queueMs": 0.055166,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 20,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.600958,
+          "queueMs": 0.096042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 21,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.4375,
+          "queueMs": 0.052875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 22,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.54225,
+          "queueMs": 0.043167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 23,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.655458,
+          "queueMs": 0.043583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 24,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.177708,
+          "queueMs": 0.045083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 25,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.728958,
+          "queueMs": 0.052875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 26,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.306041,
+          "queueMs": 0.044834,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 27,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.47125,
+          "queueMs": 0.046708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 28,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.981958,
+          "queueMs": 0.045459,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 29,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.524416,
+          "queueMs": 0.038834,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 30,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.185208,
+          "queueMs": 0.046042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 31,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.32275,
+          "queueMs": 0.029834,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 32,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.896583,
+          "queueMs": 0.03675,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 33,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.87925,
+          "queueMs": 0.02675,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 34,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.898,
+          "queueMs": 0.0295,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 35,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.570166,
+          "queueMs": 0.029042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 36,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.491459,
+          "queueMs": 0.024333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 37,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.712875,
+          "queueMs": 0.034875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 38,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.068959,
+          "queueMs": 0.029875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 39,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.061542,
+          "queueMs": 0.030333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 40,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.175667,
+          "queueMs": 0.027791,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 41,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.400708,
+          "queueMs": 0.038208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 42,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.682042,
+          "queueMs": 0.039041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 43,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.197416,
+          "queueMs": 0.11675,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 44,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.202125,
+          "queueMs": 0.041833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 45,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.098042,
+          "queueMs": 0.053875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 46,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.167291,
+          "queueMs": 0.049292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 47,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.218959,
+          "queueMs": 0.042666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 48,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.517584,
+          "queueMs": 0.065291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 49,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.629042,
+          "queueMs": 0.066583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 50,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.695125,
+          "queueMs": 0.064666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 51,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.816542,
+          "queueMs": 0.076375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 52,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.033125,
+          "queueMs": 0.063541,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 53,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.471916,
+          "queueMs": 0.061042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 54,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.681666,
+          "queueMs": 0.0625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 55,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.310125,
+          "queueMs": 0.0505,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 56,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.4045,
+          "queueMs": 0.061959,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 57,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.106375,
+          "queueMs": 0.062583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 58,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.63425,
+          "queueMs": 0.053709,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 59,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.3755,
+          "queueMs": 0.06525,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 60,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.448833,
+          "queueMs": 0.063917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 61,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.034958,
+          "queueMs": 0.062084,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 62,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.459917,
+          "queueMs": 0.064292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 63,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.964416,
+          "queueMs": 0.0555,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 64,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.133458,
+          "queueMs": 0.047084,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 65,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.588875,
+          "queueMs": 0.063917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 66,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.695292,
+          "queueMs": 0.060625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 67,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.896708,
+          "queueMs": 0.061083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 68,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.500375,
+          "queueMs": 0.053875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 69,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.306209,
+          "queueMs": 0.093875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 70,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.441708,
+          "queueMs": 0.053917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 71,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.391333,
+          "queueMs": 0.048375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 72,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.527542,
+          "queueMs": 0.055542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 73,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.147292,
+          "queueMs": 0.059375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 74,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.301708,
+          "queueMs": 0.049792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 75,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.255834,
+          "queueMs": 0.043125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 76,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.214958,
+          "queueMs": 0.0465,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 77,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.939667,
+          "queueMs": 0.066458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 78,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.819042,
+          "queueMs": 0.039083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 79,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.977792,
+          "queueMs": 0.051958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 80,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.015042,
+          "queueMs": 0.058792,
+          "bytes": 45,
+          "error": ""
+        }
+      ],
+      "message": ""
+    },
+    {
+      "id": "91dba3d2-a5a0-4327-8e0c-5aa9d5324806",
+      "name": "40 ms fixture / 16 workers",
+      "state": "COMPLETED",
+      "startedAt": "2026-10-31T20:21:14.971006Z",
+      "finishedAt": "2026-10-31T20:21:15.905031Z",
+      "configuration": {
+        "scenario": {
+          "name": "40 ms fixture / 16 workers",
+          "variables": {},
+          "steps": [
+            {
+              "name": "Read items",
+              "method": "GET",
+              "url": "http://127.0.0.1:59970/items?delayMs=40",
+              "headers": {
+                "Authorization": "Bearer demo-token"
+              },
+              "body": "",
+              "timeoutMs": 3000,
+              "expectedStatus": 200,
+              "checks": [
+                {
+                  "type": "JSON_EQUALS",
+                  "path": "/items/0/name",
+                  "expected": "Notebook"
+                }
+              ],
+              "extract": {}
+            }
+          ]
+        },
+        "mode": "COUNT",
+        "concurrency": 16,
+        "iterations": 20,
+        "durationSeconds": 10
+      },
+      "attempted": 320,
+      "passed": 320,
+      "failed": 0,
+      "cancelled": 0,
+      "iterationsCompleted": 320,
+      "activeRequests": 0,
+      "elapsedSeconds": 0.934037209,
+      "requestsPerSecond": 342.59877113739265,
+      "p50Ms": 47.039,
+      "p95Ms": 48.031,
+      "p99Ms": 48.639,
+      "queueP95Ms": 0.071,
+      "responseBytes": 14400,
+      "outcomes": {
+        "PASSED": 320
+      },
+      "steps": [
+        {
+          "name": "Read items",
+          "requests": 320,
+          "passed": 320,
+          "failed": 0,
+          "cancelled": 0,
+          "p95Ms": 48.031
+        }
+      ],
+      "series": [
+        {
+          "second": 0,
+          "requests": 320,
+          "failed": 0,
+          "meanMs": 46.331366062499946
+        }
+      ],
+      "samples": [
+        {
+          "sequence": 121,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.9875,
+          "queueMs": 0.030084,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 122,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.468459,
+          "queueMs": 0.030125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 123,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.130083,
+          "queueMs": 0.044667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 124,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.836458,
+          "queueMs": 0.037292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 125,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.959333,
+          "queueMs": 0.041209,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 126,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.439542,
+          "queueMs": 0.030625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 127,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.6455,
+          "queueMs": 0.031542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 128,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.4375,
+          "queueMs": 0.030375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 129,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.333,
+          "queueMs": 0.04375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 130,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.503959,
+          "queueMs": 0.036708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 131,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.398,
+          "queueMs": 0.035459,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 132,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.108459,
+          "queueMs": 0.029791,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 133,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.515542,
+          "queueMs": 0.045083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 134,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.500083,
+          "queueMs": 0.030125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 135,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.425417,
+          "queueMs": 0.038666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 136,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.740291,
+          "queueMs": 0.043042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 137,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.903875,
+          "queueMs": 0.051917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 138,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.67725,
+          "queueMs": 0.033208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 139,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.536167,
+          "queueMs": 0.040625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 140,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.466625,
+          "queueMs": 0.034375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 141,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.657792,
+          "queueMs": 0.03625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 142,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.191167,
+          "queueMs": 0.030167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 143,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.796458,
+          "queueMs": 0.040542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 144,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.71125,
+          "queueMs": 0.039708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 145,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.413292,
+          "queueMs": 0.026208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 146,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.638834,
+          "queueMs": 0.048208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 147,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.686916,
+          "queueMs": 0.04275,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 148,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.81475,
+          "queueMs": 0.031583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 149,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.583916,
+          "queueMs": 0.026792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 150,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.091917,
+          "queueMs": 0.044291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 151,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.640708,
+          "queueMs": 0.032709,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 152,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.295208,
+          "queueMs": 0.032917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 153,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.901208,
+          "queueMs": 0.03825,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 154,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.951834,
+          "queueMs": 0.040958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 155,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.726959,
+          "queueMs": 0.036125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 156,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.158958,
+          "queueMs": 0.035708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 157,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.07075,
+          "queueMs": 0.048666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 158,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.624791,
+          "queueMs": 0.038667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 159,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.088125,
+          "queueMs": 0.030333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 160,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.134375,
+          "queueMs": 0.039292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 161,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.220375,
+          "queueMs": 0.041292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 162,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.763125,
+          "queueMs": 0.041792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 163,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.520416,
+          "queueMs": 0.029917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 164,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.621417,
+          "queueMs": 0.045708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 165,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.199,
+          "queueMs": 0.040959,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 166,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.811667,
+          "queueMs": 0.032666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 167,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.310792,
+          "queueMs": 0.039042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 168,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.715417,
+          "queueMs": 0.040792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 169,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.879333,
+          "queueMs": 0.032125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 170,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.663084,
+          "queueMs": 0.045666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 171,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.545708,
+          "queueMs": 0.031084,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 172,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 44.76025,
+          "queueMs": 0.041291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 173,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 45.0675,
+          "queueMs": 0.031416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 174,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.615417,
+          "queueMs": 0.029708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 175,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.409958,
+          "queueMs": 0.054042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 176,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.109667,
+          "queueMs": 0.034333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 177,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.557875,
+          "queueMs": 0.063041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 178,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.397834,
+          "queueMs": 0.042375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 179,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.591375,
+          "queueMs": 0.033042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 180,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.186667,
+          "queueMs": 0.027791,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 181,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.562542,
+          "queueMs": 0.028,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 182,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.904084,
+          "queueMs": 0.035083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 183,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.781375,
+          "queueMs": 0.029333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 184,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.442583,
+          "queueMs": 0.023417,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 185,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.210875,
+          "queueMs": 0.047583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 186,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.939542,
+          "queueMs": 0.029916,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 187,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.596125,
+          "queueMs": 0.036333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 188,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.178667,
+          "queueMs": 0.038208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 189,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.132708,
+          "queueMs": 0.029917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 190,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.294958,
+          "queueMs": 0.042542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 191,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.120375,
+          "queueMs": 0.028667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 192,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.78575,
+          "queueMs": 0.044708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 193,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.685709,
+          "queueMs": 0.033875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 194,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.1635,
+          "queueMs": 0.021666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 195,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.099625,
+          "queueMs": 0.038125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 196,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.544958,
+          "queueMs": 0.031208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 197,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.842917,
+          "queueMs": 0.055416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 198,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.344125,
+          "queueMs": 0.026166,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 199,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.116875,
+          "queueMs": 0.031959,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 200,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.767541,
+          "queueMs": 0.035042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 201,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.890667,
+          "queueMs": 0.022333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 202,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.939541,
+          "queueMs": 0.0215,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 203,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.8975,
+          "queueMs": 0.033375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 204,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.650084,
+          "queueMs": 0.029333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 205,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.6515,
+          "queueMs": 0.02175,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 206,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.489458,
+          "queueMs": 0.026167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 207,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 49.683416,
+          "queueMs": 0.030875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 208,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 50.213042,
+          "queueMs": 0.027167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 209,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.339041,
+          "queueMs": 0.01975,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 210,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.938917,
+          "queueMs": 0.059416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 211,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.646541,
+          "queueMs": 0.053292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 212,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.958542,
+          "queueMs": 0.024,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 213,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.07075,
+          "queueMs": 0.033125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 214,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.877542,
+          "queueMs": 0.018417,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 215,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 43.757458,
+          "queueMs": 0.023458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 216,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.038583,
+          "queueMs": 0.019792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 217,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.003709,
+          "queueMs": 0.017583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 218,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.198375,
+          "queueMs": 0.022333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 219,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.017334,
+          "queueMs": 0.041958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 220,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.385167,
+          "queueMs": 0.028125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 221,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.0235,
+          "queueMs": 0.023042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 222,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.117667,
+          "queueMs": 0.01675,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 223,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.077166,
+          "queueMs": 0.024834,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 224,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.229333,
+          "queueMs": 0.017625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 225,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.316,
+          "queueMs": 0.020542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 226,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.563209,
+          "queueMs": 0.024666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 227,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.625584,
+          "queueMs": 0.021333,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 228,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.582209,
+          "queueMs": 0.0325,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 229,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.71725,
+          "queueMs": 0.034542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 230,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.967292,
+          "queueMs": 0.026625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 231,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.487834,
+          "queueMs": 0.033083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 232,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.539542,
+          "queueMs": 0.042708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 233,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.551292,
+          "queueMs": 0.025958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 234,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.673041,
+          "queueMs": 0.03025,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 235,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.379,
+          "queueMs": 0.051875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 236,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.545916,
+          "queueMs": 0.028792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 237,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.284375,
+          "queueMs": 0.02,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 238,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.331667,
+          "queueMs": 0.028917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 239,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.255375,
+          "queueMs": 0.021083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 240,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.16175,
+          "queueMs": 0.028875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 241,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.046458,
+          "queueMs": 0.0495,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 242,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.891125,
+          "queueMs": 0.048417,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 243,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.015792,
+          "queueMs": 0.034542,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 244,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.471375,
+          "queueMs": 0.036416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 245,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.646875,
+          "queueMs": 0.04875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 246,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.811417,
+          "queueMs": 0.049291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 247,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.877666,
+          "queueMs": 0.032667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 248,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.566459,
+          "queueMs": 0.117708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 249,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.833458,
+          "queueMs": 0.033792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 250,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.883541,
+          "queueMs": 0.023667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 251,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.071,
+          "queueMs": 0.103041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 252,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.570417,
+          "queueMs": 0.042583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 253,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.232959,
+          "queueMs": 0.028708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 254,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.263458,
+          "queueMs": 0.030917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 255,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.51725,
+          "queueMs": 0.026917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 256,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.551167,
+          "queueMs": 0.024958,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 257,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.218834,
+          "queueMs": 0.025458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 258,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.306709,
+          "queueMs": 0.020041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 259,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.564292,
+          "queueMs": 0.037166,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 260,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.644584,
+          "queueMs": 0.054458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 261,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.007042,
+          "queueMs": 0.043042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 262,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.904709,
+          "queueMs": 0.028666,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 263,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.858667,
+          "queueMs": 0.044041,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 264,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.92375,
+          "queueMs": 0.030417,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 265,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.021625,
+          "queueMs": 0.034625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 266,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.517542,
+          "queueMs": 0.020875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 267,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.523,
+          "queueMs": 0.023125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 268,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.106,
+          "queueMs": 0.024875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 269,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.009833,
+          "queueMs": 0.053625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 270,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 41.881,
+          "queueMs": 0.028083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 271,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.582,
+          "queueMs": 0.033917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 272,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 42.03325,
+          "queueMs": 0.029917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 273,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.355792,
+          "queueMs": 0.022291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 274,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.491334,
+          "queueMs": 0.059416,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 275,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.382625,
+          "queueMs": 0.027417,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 276,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.779125,
+          "queueMs": 0.018708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 277,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.4695,
+          "queueMs": 0.019292,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 278,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.491083,
+          "queueMs": 0.021458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 279,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.411667,
+          "queueMs": 0.036833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 280,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.694875,
+          "queueMs": 0.022709,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 281,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.993792,
+          "queueMs": 0.07125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 282,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.751,
+          "queueMs": 0.030375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 283,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.124542,
+          "queueMs": 0.022625,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 284,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.414791,
+          "queueMs": 0.031792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 285,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.010417,
+          "queueMs": 0.022667,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 286,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.567083,
+          "queueMs": 0.030167,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 287,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.883666,
+          "queueMs": 0.027792,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 288,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.339417,
+          "queueMs": 0.020083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 289,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.962209,
+          "queueMs": 0.022083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 290,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.160333,
+          "queueMs": 0.026875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 291,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.731,
+          "queueMs": 0.02825,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 292,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.378792,
+          "queueMs": 0.045042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 293,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.2995,
+          "queueMs": 0.025083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 294,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.044458,
+          "queueMs": 0.033042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 295,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.537875,
+          "queueMs": 0.0465,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 296,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.52775,
+          "queueMs": 0.033833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 297,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.536375,
+          "queueMs": 0.0605,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 298,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.365334,
+          "queueMs": 0.026458,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 299,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.157625,
+          "queueMs": 0.040209,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 300,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.154375,
+          "queueMs": 0.035917,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 301,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.836709,
+          "queueMs": 0.035291,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 302,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.96525,
+          "queueMs": 0.034833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 303,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 48.015792,
+          "queueMs": 0.028708,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 304,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.805083,
+          "queueMs": 0.024833,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 305,
+          "worker": 10,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.032875,
+          "queueMs": 0.033583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 306,
+          "worker": 7,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.670042,
+          "queueMs": 0.034042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 307,
+          "worker": 3,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.268208,
+          "queueMs": 0.029125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 308,
+          "worker": 13,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.428084,
+          "queueMs": 0.065125,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 309,
+          "worker": 11,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.829083,
+          "queueMs": 0.030042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 310,
+          "worker": 2,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.016834,
+          "queueMs": 0.028208,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 311,
+          "worker": 5,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.167041,
+          "queueMs": 0.024459,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 312,
+          "worker": 16,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.827958,
+          "queueMs": 0.024375,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 313,
+          "worker": 15,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.221709,
+          "queueMs": 0.041583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 314,
+          "worker": 8,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 46.894208,
+          "queueMs": 0.028583,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 315,
+          "worker": 14,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.258375,
+          "queueMs": 0.092875,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 316,
+          "worker": 1,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.390125,
+          "queueMs": 0.052083,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 317,
+          "worker": 4,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.26875,
+          "queueMs": 0.0485,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 318,
+          "worker": 12,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.531833,
+          "queueMs": 0.032042,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 319,
+          "worker": 6,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.063334,
+          "queueMs": 0.024541,
+          "bytes": 45,
+          "error": ""
+        },
+        {
+          "sequence": 320,
+          "worker": 9,
+          "step": "Read items",
+          "status": 200,
+          "outcome": "PASSED",
+          "latencyMs": 47.179917,
+          "queueMs": 0.032833,
+          "bytes": 45,
+          "error": ""
+        }
+      ],
+      "message": ""
+    }
+  ],
+  "recovered": {
+    "id": "ae587624-68d8-47da-8fcd-1e938bd29bc8",
+    "name": "Demo checkout",
+    "state": "INTERRUPTED",
+    "startedAt": "2026-10-31T20:21:15.914450Z",
+    "finishedAt": "2026-10-31T20:21:18.448475Z",
+    "configuration": {
+      "scenario": {
+        "name": "Demo checkout",
+        "variables": {
+          "baseUrl": "http://127.0.0.1:59970"
+        },
+        "steps": [
+          {
+            "name": "Create session",
+            "method": "POST",
+            "url": "${baseUrl}/session",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{\"name\":\"demo\"}",
+            "timeoutMs": 3000,
+            "expectedStatus": 200,
+            "checks": [
+              {
+                "type": "JSON_EQUALS",
+                "path": "/authenticated",
+                "expected": "true"
+              }
+            ],
+            "extract": {
+              "token": "/token"
+            }
+          },
+          {
+            "name": "Read items",
+            "method": "GET",
+            "url": "${baseUrl}/items?delayMs=40",
+            "headers": {
+              "Authorization": "Bearer ${token}"
+            },
+            "body": "",
+            "timeoutMs": 3000,
+            "expectedStatus": 200,
+            "checks": [
+              {
+                "type": "JSON_EQUALS",
+                "path": "/items/0/name",
+                "expected": "Notebook"
+              }
+            ],
+            "extract": {
+              "itemId": "/items/0/id"
+            }
+          },
+          {
+            "name": "Create order",
+            "method": "POST",
+            "url": "${baseUrl}/orders",
+            "headers": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer ${token}"
+            },
+            "body": "{\"itemId\":\"${itemId}\",\"quantity\":1}",
+            "timeoutMs": 3000,
+            "expectedStatus": 201,
+            "checks": [
+              {
+                "type": "JSON_EQUALS",
+                "path": "/accepted",
+                "expected": "true"
+              }
+            ],
+            "extract": {}
+          }
+        ]
+      },
+      "mode": "DURATION",
+      "concurrency": 2,
+      "iterations": 1,
+      "durationSeconds": 30
+    },
+    "attempted": 33,
+    "passed": 33,
+    "failed": 0,
+    "cancelled": 0,
+    "iterationsCompleted": 10,
+    "activeRequests": 0,
+    "elapsedSeconds": 0.282123208,
+    "requestsPerSecond": 116.97017141532007,
+    "p50Ms": 0.863,
+    "p95Ms": 46.015,
+    "p99Ms": 46.079,
+    "queueP95Ms": 0.684,
+    "responseBytes": 1591,
+    "outcomes": {
+      "PASSED": 33
+    },
+    "steps": [
+      {
+        "name": "Create session",
+        "requests": 12,
+        "passed": 12,
+        "failed": 0,
+        "cancelled": 0,
+        "p95Ms": 3.209
+      },
+      {
+        "name": "Read items",
+        "requests": 11,
+        "passed": 11,
+        "failed": 0,
+        "cancelled": 0,
+        "p95Ms": 46.079
+      },
+      {
+        "name": "Create order",
+        "requests": 10,
+        "passed": 10,
+        "failed": 0,
+        "cancelled": 0,
+        "p95Ms": 1.226
+      }
+    ],
+    "series": [
+      {
+        "second": 0,
+        "requests": 33,
+        "failed": 0,
+        "meanMs": 15.549570666666664
+      }
+    ],
+    "samples": [
+      {
+        "sequence": 1,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 3.1295,
+        "queueMs": 0.684417,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 2,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 3.207542,
+        "queueMs": 0.690625,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 3,
+        "worker": 2,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.99375,
+        "queueMs": 0.052875,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 4,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 46.055416,
+        "queueMs": 0.038292,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 5,
+        "worker": 2,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 1.169333,
+        "queueMs": 0.096042,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 6,
+        "worker": 1,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 1.226208,
+        "queueMs": 0.124959,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 7,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.729375,
+        "queueMs": 0.028458,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 8,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.875625,
+        "queueMs": 0.042417,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 9,
+        "worker": 2,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 42.834125,
+        "queueMs": 0.045334,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 10,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 42.87125,
+        "queueMs": 0.09925,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 11,
+        "worker": 2,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.674125,
+        "queueMs": 0.064583,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 12,
+        "worker": 1,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.665,
+        "queueMs": 0.046333,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 13,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.43425,
+        "queueMs": 0.031333,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 14,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.445792,
+        "queueMs": 0.032166,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 15,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.214833,
+        "queueMs": 0.026708,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 16,
+        "worker": 2,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.239292,
+        "queueMs": 0.027542,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 17,
+        "worker": 2,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.679292,
+        "queueMs": 0.054583,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 18,
+        "worker": 1,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.678458,
+        "queueMs": 0.056417,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 19,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.48275,
+        "queueMs": 0.029083,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 20,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.480166,
+        "queueMs": 0.032167,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 21,
+        "worker": 2,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.749792,
+        "queueMs": 0.036375,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 22,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.731833,
+        "queueMs": 0.045625,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 23,
+        "worker": 2,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.675125,
+        "queueMs": 0.058625,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 24,
+        "worker": 1,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.677041,
+        "queueMs": 0.058709,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 25,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.549333,
+        "queueMs": 0.039292,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 26,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.580834,
+        "queueMs": 0.032833,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 27,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.9135,
+        "queueMs": 0.046292,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 28,
+        "worker": 2,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 45.967583,
+        "queueMs": 0.042125,
+        "bytes": 45,
+        "error": ""
+      },
+      {
+        "sequence": 29,
+        "worker": 2,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.8425,
+        "queueMs": 0.076333,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 30,
+        "worker": 1,
+        "step": "Create order",
+        "status": 201,
+        "outcome": "PASSED",
+        "latencyMs": 0.863417,
+        "queueMs": 0.071958,
+        "bytes": 58,
+        "error": ""
+      },
+      {
+        "sequence": 31,
+        "worker": 2,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.586792,
+        "queueMs": 0.041708,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 32,
+        "worker": 1,
+        "step": "Create session",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 0.572917,
+        "queueMs": 0.042458,
+        "bytes": 43,
+        "error": ""
+      },
+      {
+        "sequence": 33,
+        "worker": 1,
+        "step": "Read items",
+        "status": 200,
+        "outcome": "PASSED",
+        "latencyMs": 41.339083,
+        "queueMs": 0.044834,
+        "bytes": 45,
+        "error": ""
+      }
+    ],
+    "message": "Backend restarted; in-flight work was not replayed."
+  }
+}

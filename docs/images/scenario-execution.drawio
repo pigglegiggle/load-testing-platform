@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Scenario execution — isolated worker loops" id="scenario-execution">
+    <mxGraphModel page="1" pageWidth="1200" pageHeight="480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Scenario execution — isolated worker loops" style="text;html=0;align=center;verticalAlign=top;fontSize=24;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="350.0" y="4" width="500" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#222222;fontColor=#111111;fontFamily=Arial;fontSize=17;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="1140" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Each concurrent worker owns its variables for the current iteration" style="text;html=0;align=center;verticalAlign=top;fontSize=18;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="350" y="100" width="500" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Step 1: create session&#10;Extract token" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#222222;fontColor=#111111;fontFamily=Arial;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="70" y="185" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Step 2: read items&#10;Use token · extract item ID" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#222222;fontColor=#111111;fontFamily=Arial;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="470" y="185" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Step 3: create order&#10;Use item ID · assert result" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#FFFFFF;strokeColor=#222222;fontColor=#111111;fontFamily=Arial;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="880" y="185" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="8" style="edgeStyle=none;html=0;endArrow=block;endFill=1;strokeColor=#222222;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="230" as="sourcePoint" />
+            <mxPoint x="470" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" value="passed" style="text;html=0;align=center;verticalAlign=top;fontSize=15;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="140" y="197" width="500" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="edgeStyle=none;html=0;endArrow=block;endFill=1;strokeColor=#222222;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="230" as="sourcePoint" />
+            <mxPoint x="880" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" value="passed" style="text;html=0;align=center;verticalAlign=top;fontSize=15;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="550" y="197" width="500" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Any failed step stops that iteration. The next iteration starts with fresh variables." style="text;html=0;align=center;verticalAlign=top;fontSize=16;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="350" y="317" width="500" height="21" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Count mode: repeat per worker. Duration mode: repeat until the run deadline." style="text;html=0;align=center;verticalAlign=top;fontSize=17;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="350" y="403" width="500" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Cancellation interrupts pending HTTP work. There are no application-level retries." style="text;html=0;align=center;verticalAlign=top;fontSize=17;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="350" y="438" width="500" height="22" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

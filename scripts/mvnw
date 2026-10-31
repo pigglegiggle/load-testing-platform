@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+version=3.9.11
+installation="$root/.tools/apache-maven-$version"
+if [ ! -x "$installation/bin/mvn" ]; then
+    mkdir -p "$root/.tools"
+    archive="$root/.tools/maven-download.tar.gz"
+    base="https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/$version/apache-maven-$version-bin.tar.gz"
+    curl -fL "$base" -o "$archive"
+    curl -fsSL "$base.sha512" -o "$archive.sha512"
+    expected=$(tr -d '\r\n ' < "$archive.sha512")
+    actual=$(shasum -a 512 "$archive" | cut -d ' ' -f 1)
+    if [ "$actual" != "$expected" ]; then
+        rm -f "$archive" "$archive.sha512"
+        echo 'Maven checksum verification failed.' >&2
+        exit 1
+    fi
+    tar -xzf "$archive" -C "$root/.tools"
+    rm -f "$archive" "$archive.sha512"
+fi
+exec "$installation/bin/mvn" -f "$root/backend/pom.xml" "$@"

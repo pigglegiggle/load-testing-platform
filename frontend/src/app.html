@@ -1,0 +1,522 @@
+<main>
+  <header>
+    <div>
+      <h1>Load Testing Platform</h1>
+      <p class="muted">Send requests. Run scenarios. Measure the results.</p>
+    </div>
+    <span class="connection">{{
+      connected
+        ? "Backend connected"
+        : config
+          ? "Backend unavailable"
+          : "Connecting…"
+    }}</span>
+  </header>
+  <nav aria-label="Workspace">
+    <button [class.selected]="tab === 'request'" (click)="tab = 'request'">
+      Request</button
+    ><button [class.selected]="tab === 'scenario'" (click)="tab = 'scenario'">
+      Scenario</button
+    ><button [class.selected]="tab === 'runs'" (click)="tab = 'runs'">
+      Runs <span class="muted">{{ runs.length }}</span>
+    </button>
+  </nav>
+  @if (error) {
+    <div class="error banner" role="alert">
+      {{ error
+      }}<button (click)="error = ''" aria-label="Dismiss error">Dismiss</button>
+    </div>
+  }
+  @if (notice) {
+    <div class="notice banner" role="status">{{ notice }}</div>
+  }
+  @if (config) {
+    <p class="hint targets">
+      Allowed targets: {{ config.allowedOrigins.join(", ") }}. Add other origins
+      with TARGET_ORIGINS when starting the backend.
+    </p>
+  }
+  @if (tab === "request") {
+    <section>
+      <div class="section-line">
+        <h2>Request</h2>
+        <button
+          class="primary"
+          (click)="send()"
+          [disabled]="busy || !requestValid"
+        >
+          {{ busy ? "Sending…" : "Send request" }}
+        </button>
+      </div>
+      <step-editor
+        [step]="request"
+        [expanded]="true"
+        (validity)="requestValid = $event"
+      />
+      <p class="hint">
+        Request templates use the variables from the Scenario tab.
+      </p>
+    </section>
+    @if (reply) {
+      <section>
+        <div class="section-line">
+          <h2>Response</h2>
+          <span class="status" [class.bad]="!reply.passed">{{
+            reply.outcome
+          }}</span>
+        </div>
+        <div class="response-meta">
+          <span
+            >Status <strong>{{ reply.status || "—" }}</strong></span
+          ><span
+            >HTTP time
+            <strong>{{ reply.latencyMs | number: "1.2-2" }} ms</strong></span
+          ><span
+            >Queue
+            <strong>{{ reply.queueMs | number: "1.2-2" }} ms</strong></span
+          ><span
+            >Body <strong>{{ reply.bytes | number }} B</strong></span
+          >
+        </div>
+        @for (message of reply.errors; track $index) {
+          <p class="error">{{ message }}</p>
+        }
+        <details>
+          <summary>Response headers</summary>
+          <pre>{{ reply.headers | json }}</pre>
+        </details>
+        <h3>Body</h3>
+        <pre class="body-preview">{{ reply.body || "(empty body)" }}</pre>
+        @if ((reply.extracted | keyvalue).length) {
+          <h3>Extracted variables</h3>
+          <pre>{{ reply.extracted | json }}</pre>
+        }
+      </section>
+    }
+  }
+  @if (tab === "scenario") {
+    <section>
+      <div class="section-line">
+        <h2>Scenario</h2>
+        <div class="actions">
+          <button (click)="perform(loadExample.bind(this))" [disabled]="busy">
+            Load demo</button
+          ><label class="file-button"
+            >Import JSON<input
+              type="file"
+              accept=".json,application/json"
+              (change)="importScenario($event)"
+              [disabled]="busy" /></label
+          ><button (click)="exportScenario()">Export JSON</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="grow"
+          >Saved scenario<select
+            [(ngModel)]="selectedScenario"
+            (ngModelChange)="chooseScenario()"
+          >
+            <option value="">Unsaved scenario</option>
+            @for (item of saved; track item.id) {
+              <option [value]="item.id">{{ item.definition.name }}</option>
+            }
+          </select></label
+        ><button (click)="save()" [disabled]="busy">Save</button
+        ><button (click)="save(true)" [disabled]="busy">Save copy</button
+        ><button
+          (click)="deleteScenario()"
+          [disabled]="busy || !selectedScenario"
+        >
+          Delete saved
+        </button>
+      </div>
+      <label
+        >Scenario name<input [(ngModel)]="scenario.name" maxlength="120"
+      /></label>
+      <label class="fields"
+        >Initial variables · JSON object<textarea
+          rows="3"
+          [(ngModel)]="variablesText"
+          spellcheck="false"
+        ></textarea>
+      </label>
+      <p class="hint">
+        Each worker gets fresh variables for every iteration. Extracted values
+        are available to subsequent steps. A failed step stops that iteration.
+      </p>
+    </section>
+    @for (step of scenario.steps; track step; let i = $index) {
+      <section class="step">
+        <div class="section-line">
+          <h2>Step {{ i + 1 }}</h2>
+          <div class="actions">
+            <button
+              class="small"
+              (click)="moveStep(i, -1)"
+              [disabled]="i === 0"
+            >
+              Move up</button
+            ><button
+              class="small"
+              (click)="moveStep(i, 1)"
+              [disabled]="i === scenario.steps.length - 1"
+            >
+              Move down</button
+            ><button
+              class="small"
+              (click)="removeStep(i)"
+              [disabled]="scenario.steps.length === 1"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <step-editor [step]="step" (validity)="setValidity(step, $event)" />
+      </section>
+    }
+    <button (click)="addStep()" [disabled]="scenario.steps.length >= 20">
+      Add step
+    </button>
+    <section>
+      <h2>Run configuration</h2>
+      <div class="form-row run-settings">
+        <label
+          >Mode<select [(ngModel)]="mode">
+            <option value="COUNT">Iterations per worker</option>
+            <option value="DURATION">Fixed duration</option>
+          </select></label
+        ><label
+          >Concurrent workers<input
+            type="number"
+            [(ngModel)]="concurrency"
+            min="1"
+            max="64"
+        /></label>
+        @if (mode === "COUNT") {
+          <label
+            >Iterations per worker<input
+              type="number"
+              [(ngModel)]="iterations"
+              min="1"
+              max="500"
+          /></label>
+        } @else {
+          <label
+            >Duration (seconds)<input
+              type="number"
+              [(ngModel)]="duration"
+              min="1"
+              max="120"
+          /></label>
+        }
+        <button
+          class="primary"
+          (click)="startRun()"
+          [disabled]="busy || invalidSteps.size > 0"
+        >
+          Start run
+        </button>
+      </div>
+      <p class="hint">
+        Workers execute steps sequentially, then repeat. No application-level
+        retries. Count runs have a 120-second safety limit. At most two runs
+        execute at once.
+      </p>
+    </section>
+  }
+  @if (tab === "runs") {
+    <section>
+      <div class="section-line">
+        <h2>Run history</h2>
+        <span class="hint">Refreshes every 0.8 seconds</span>
+      </div>
+      @if (!runs.length) {
+        <p class="empty">
+          No runs yet. Open Scenario, load the demo and start a run.
+        </p>
+      } @else {
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Started</th>
+                <th>State</th>
+                <th>Requests</th>
+                <th>Failed</th>
+                <th>p95</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of runs; track item.id) {
+                <tr [class.current]="item.id === selectedRun">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.startedAt | date: "MMM d, HH:mm:ss" }}</td>
+                  <td>
+                    <span
+                      class="status"
+                      [class.bad]="
+                        item.state === 'FAILED' || item.state === 'INTERRUPTED'
+                      "
+                      >{{ item.state }}</span
+                    >
+                  </td>
+                  <td>{{ item.attempted | number }}</td>
+                  <td>{{ item.failed | number }}</td>
+                  <td>{{ item.p95Ms | number: "1.2-2" }} ms</td>
+                  <td>
+                    <button class="small" (click)="loadRun(item.id)">
+                      Open
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+    @if (run; as result) {
+      <section>
+        <div class="section-line">
+          <div>
+            <h2>{{ result.name }}</h2>
+            <p class="hint">
+              {{ result.configuration.concurrency }} workers ·
+              {{ result.configuration.mode }} ·
+              {{ result.elapsedSeconds | number: "1.2-2" }} seconds ·
+              {{ result.id }}
+            </p>
+          </div>
+          <div class="actions">
+            <span class="status">{{ result.state }}</span
+            ><button (click)="download('run-' + result.id + '.json', result)">
+              Export result
+            </button>
+            @if (active(result.state)) {
+              <button
+                (click)="cancelRun()"
+                [disabled]="busy || result.state === 'CANCELLING'"
+              >
+                Cancel run
+              </button>
+            }
+          </div>
+        </div>
+        @if (result.message) {
+          <p class="notice">{{ result.message }}</p>
+        }
+        <div class="metrics">
+          <div>
+            <span>Requests finished</span
+            ><strong>{{ result.attempted | number }}</strong>
+          </div>
+          <div>
+            <span>Passed / failed / cancelled</span
+            ><strong
+              >{{ result.passed }} / {{ result.failed }} /
+              {{ result.cancelled }}</strong
+            >
+          </div>
+          <div>
+            <span>Requests / second</span
+            ><strong>{{ result.requestsPerSecond | number: "1.1-1" }}</strong>
+          </div>
+          <div>
+            <span>HTTP p95</span
+            ><strong
+              >{{ result.p95Ms | number: "1.2-2" }} <small>ms</small></strong
+            >
+          </div>
+        </div>
+        <p class="hint">
+          p50 {{ result.p50Ms | number: "1.2-2" }} ms · p99
+          {{ result.p99Ms | number: "1.2-2" }} ms · queue p95
+          {{ result.queueP95Ms | number: "1.2-2" }} ms ·
+          {{ result.activeRequests }} active attempts ·
+          {{ result.iterationsCompleted }} successful iterations ·
+          {{ result.responseBytes | number }} response bytes
+        </p>
+        <h3>Mean HTTP time by completion second</h3>
+        @if (result.series.length) {
+          <div class="chart">
+            <span class="hint"
+              >{{ chartMaximum(result) | number: "1.1-1" }} ms</span
+            ><svg
+              viewBox="0 0 800 165"
+              role="img"
+              aria-label="Mean HTTP latency by elapsed completion second"
+            >
+              <line x1="20" y1="145" x2="780" y2="145" stroke="#d9d9d9" />
+              <polyline
+                [attr.points]="chartPoints(result)"
+                fill="none"
+                stroke="#345f86"
+                stroke-width="2"
+              />
+              @for (bucket of result.series; track bucket.second) {
+                <circle
+                  [attr.cx]="
+                    20 +
+                    (bucket.second /
+                      (result.series[result.series.length - 1].second || 1)) *
+                      760
+                  "
+                  [attr.cy]="145 - (bucket.meanMs / chartMaximum(result)) * 125"
+                  r="3"
+                  fill="#345f86"
+                >
+                  <title>
+                    {{ bucket.second }}s:
+                    {{ bucket.meanMs | number: "1.2-2" }} ms;
+                    {{ bucket.requests }} requests, {{ bucket.failed }} failed
+                  </title>
+                </circle>
+              }
+            </svg>
+            <div class="chart-axis">
+              <span>0 seconds</span
+              ><span
+                >{{
+                  result.series[result.series.length - 1].second
+                }}
+                seconds</span
+              >
+            </div>
+          </div>
+        } @else {
+          <p class="empty">Waiting for the first response.</p>
+        }
+        <p class="hint">
+          Latency measures send-to-full-body time. Queue time is separate.
+          Cancelled requests are excluded from latency percentiles. This is a
+          closed-loop workload, not a fixed arrival-rate generator.
+        </p>
+        <h3>Step results</h3>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Requests</th>
+                <th>Passed</th>
+                <th>Failed</th>
+                <th>Cancelled</th>
+                <th>p95</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (step of result.steps; track step.name) {
+                <tr>
+                  <td>{{ step.name }}</td>
+                  <td>{{ step.requests }}</td>
+                  <td>{{ step.passed }}</td>
+                  <td>{{ step.failed }}</td>
+                  <td>{{ step.cancelled }}</td>
+                  <td>{{ step.p95Ms | number: "1.2-2" }} ms</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <h3>Compare with another run</h3>
+        <label
+          >Baseline<select [(ngModel)]="compareId" (ngModelChange)="compare()">
+            <option value="">Choose a run</option>
+            @for (item of runs; track item.id) {
+              @if (item.id !== result.id && !active(item.state)) {
+                <option [value]="item.id">
+                  {{ item.name }} · {{ item.startedAt | date: "HH:mm:ss" }} ·
+                  {{ item.state }}
+                </option>
+              }
+            }
+          </select></label
+        >
+        @if (comparison; as base) {
+          <p class="hint">
+            Baseline: {{ base.configuration.concurrency }} workers,
+            {{ base.configuration.mode }}, {{ base.attempted }} requests.
+            Compare like-for-like workloads; deltas alone do not establish a
+            regression.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Baseline</th>
+                <th>Selected run</th>
+                <th>Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>p95 (ms)</td>
+                <td>{{ base.p95Ms | number: "1.2-2" }}</td>
+                <td>{{ result.p95Ms | number: "1.2-2" }}</td>
+                <td>{{ delta(result.p95Ms, base.p95Ms) }}</td>
+              </tr>
+              <tr>
+                <td>Requests / second</td>
+                <td>{{ base.requestsPerSecond | number: "1.1-1" }}</td>
+                <td>{{ result.requestsPerSecond | number: "1.1-1" }}</td>
+                <td>
+                  {{ delta(result.requestsPerSecond, base.requestsPerSecond) }}
+                </td>
+              </tr>
+              <tr>
+                <td>Failed requests</td>
+                <td>{{ base.failed }}</td>
+                <td>{{ result.failed }}</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        }
+      </section>
+      <section>
+        <h2>Recent requests</h2>
+        <p class="hint">
+          Last 200 completions only. Histograms and counters cover the whole
+          run. Response bodies and extracted values are not retained here.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Worker</th>
+                <th>Step</th>
+                <th>Status</th>
+                <th>Outcome</th>
+                <th>HTTP time</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (
+                sample of result.samples.slice().reverse();
+                track sample.sequence
+              ) {
+                <tr>
+                  <td>{{ sample.sequence }}</td>
+                  <td>{{ sample.worker }}</td>
+                  <td>{{ sample.step }}</td>
+                  <td>{{ sample.status || "—" }}</td>
+                  <td>{{ sample.outcome }}</td>
+                  <td>{{ sample.latencyMs | number: "1.2-2" }} ms</td>
+                  <td class="sample-error">{{ sample.error }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    }
+  }
+  <footer>
+    Local workspace · Java execution engine + Angular · Only test services you
+    own or have permission to test.
+  </footer>
+</main>

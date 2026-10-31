@@ -1,0 +1,15 @@
+.tools/
+backend/target/
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+data/
+build/
+study/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+__pycache__/
+*.pyc
